@@ -48,8 +48,8 @@ function loadWeatherData(data , cityName) {
     const sunsetTime = sunsetDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     document.getElementById('sunrise-time').textContent = sunriseTime;
     document.getElementById('sunset-time').textContent = sunsetTime;
-    document.getElementById('longitude').textContent = `${data.coord.lon}`;
-    document.getElementById('lattitude').textContent = `${data.coord.lat}`;
+    //document.getElementById('longitude').textContent = `${data.coord.lon}`;
+    //document.getElementById('lattitude').textContent = `${data.coord.lat}`;
     
     document.querySelectorAll('.forecast-placeholder').forEach(el => {
         el.style.display = 'none';

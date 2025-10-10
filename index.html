@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info Locale</title>
     <link rel="stylesheet" href="style.css">
+    <script src="assets/js/chart.umd.js"></script>
 </head>
 <body>
 
@@ -88,6 +89,15 @@
                         </div>
                     </div>
 
+                    <!-- Prevision de la journee -->
+                    <div class="card forecast-day-card">
+                        <h2 class="card-title card-title-orange">
+                            <!-- Icône SVG Prévisions -->
+                            <img src="assets/calendar_color.svg" alt="calendar" />
+                            <p style="margin-left: 5px;">Prévision d'aujourd'hui</p>
+                        </h2>
+                        <canvas id="forecast-day-Chart"></canvas>
+                    </div>
                     <!-- 3. Panneau des Prévisions à 5 Jours -->
                     <div class="card forecast-card">
                         <h2 class="card-title card-title-orange">
@@ -97,22 +107,8 @@
                         </h2>
                         <div id="forecast-container" class="forecast-container">
                             <!-- Les prévisions seront injectées ici par le JS -->
-                            <div class="forecast-day forecast-placeholder">
-                                <p class="forecast-day-name">--</p>
-                                <span class="forecast-icon">...</span>
-                                <p class="forecast-temp">-- / -- °C</p>
-                            </div>
-                            <div class="forecast-day forecast-placeholder">
-                                <p class="forecast-day-name">--</p>
-                                <span class="forecast-icon">...</span>
-                                <p class="forecast-temp">-- / -- °C</p>
-                            </div>
-                            <div class="forecast-day forecast-placeholder">
-                                <p class="forecast-day-name">--</p>
-                                <span class="forecast-icon">...</span>
-                                <p class="forecast-temp">-- / -- °C</p>
-                            </div>
                         </div>
+                        <canvas id="forecastChart"></canvas>
                     </div>
                 </div>
             </div>
