@@ -76,6 +76,7 @@ function getData() {
             const data = await response.json();
             const data2 = await response2.json();
             const cityName = data2[0]?.name || null;
+            console.log(response);
 
             loadWeatherData(data, cityName);
         } catch (error) {

@@ -96,6 +96,14 @@
                             <img src="assets/calendar_color.svg" alt="calendar" />
                             <p style="margin-left: 5px;">Prévision d'aujourd'hui</p>
                         </h2>
+                        <!-- Boutons pour basculer entre les graphiques -->
+                         <div id="forecast-hourly-container" class="forecast-container"></div>
+                        <div class="forecast-buttons" id="hourly-buttons">
+                            <button class="forecast-button active" data-type="temperature">Température</button>
+                            <button class="forecast-button" data-type="feels_like">Ressenti</button>
+                            <button class="forecast-button" data-type="humidity">Humidité</button>
+                            <button class="forecast-button" data-type="wind_speed">Vent</button>
+                        </div>
                         <canvas id="forecast-day-Chart"></canvas>
                     </div>
                     <!-- 3. Panneau des Prévisions à 5 Jours -->
@@ -108,6 +116,30 @@
                         <div id="forecast-container" class="forecast-container">
                             <!-- Les prévisions seront injectées ici par le JS -->
                         </div>
+                        <div class="forecast-buttons" id="daily-buttons">
+                            <button class="forecast-button active" data-type="temperature">Température</button>
+                            <button class="forecast-button" data-type="feels_like">Ressenti</button>
+                            <button class="forecast-button" data-type="humidity">Humidité</button>
+                            <button class="forecast-button" data-type="wind_speed">Vent</button>
+                        </div>
+                        <form action="">
+                            <div>
+                                <input type="checkbox" value="temperature">
+                                <label for="">temperature</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" value="feels-like">
+                                <label for="">Ressenti</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" value="humidity">
+                                <label for="">Humidité</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" value="wind_speed">
+                                <label for="">Vent</label>
+                            </div>
+                        </form>
                         <canvas id="forecastChart"></canvas>
                     </div>
                 </div>
