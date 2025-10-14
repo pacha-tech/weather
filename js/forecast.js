@@ -1,11 +1,8 @@
 
-// Débogage : Vérifier si Chart.js est chargé
-
-// Stocker les données globalement
 let dailyForecasts = [];
 let hourlyForecasts = [];
-let dailyChart = null; // Graphique quotidien
-let hourlyChart = null; // Graphique horaire
+let dailyChart = null;
+let hourlyChart = null;
 
 function getWeatherIcon(main) {
     switch (main) {
@@ -18,6 +15,7 @@ function getWeatherIcon(main) {
     }
 }
 
+
 function updateDailyChart(dataType) {
     const ctx = document.getElementById('forecastChart')?.getContext('2d');
 
@@ -27,12 +25,13 @@ function updateDailyChart(dataType) {
     );
     let datasets, yAxisTitle;
     switch (dataType) {
+        
         case 'temperature':
             datasets = [
                 {
                     label: 'Température Min (°C)',
                     data: dailyForecasts.map(day => day.main.temp_min),
-                    borderColor: '#3b82f6', // Bleu
+                    borderColor: '#3b82f6',
                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                     fill: false,
                     tension: 0.4
@@ -40,7 +39,7 @@ function updateDailyChart(dataType) {
                 {
                     label: 'Température Max (°C)',
                     data: dailyForecasts.map(day => day.main.temp_max),
-                    borderColor: '#f97316', // Orange
+                    borderColor: '#f97316',
                     backgroundColor: 'rgba(249, 115, 22, 0.2)',
                     fill: false,
                     tension: 0.4
@@ -63,7 +62,7 @@ function updateDailyChart(dataType) {
             datasets = [{
                 label: 'Humidité (%)',
                 data: dailyForecasts.map(day => day.main.humidity),
-                borderColor: '#10b981', // Vert
+                borderColor: '#10b981',
                 backgroundColor: 'rgba(16, 185, 129, 0.2)',
                 fill: false,
                 tension: 0.4
@@ -74,7 +73,7 @@ function updateDailyChart(dataType) {
             datasets = [{
                 label: 'Vitesse du vent (m/s)',
                 data: dailyForecasts.map(day => day.wind.speed),
-                borderColor: '#8b5cf6', // Violet
+                borderColor: '#8b5cf6',
                 backgroundColor: 'rgba(139, 92, 246, 0.2)',
                 fill: false,
                 tension: 0.4
@@ -120,6 +119,7 @@ function updateDailyChart(dataType) {
     });
 }
 
+
 function updateHourlyChart(dataType) {
     const ctx = document.getElementById('forecast-day-Chart')?.getContext('2d');
 
@@ -134,7 +134,7 @@ function updateHourlyChart(dataType) {
             dataset = {
                 label: 'Température (°C)',
                 data: hourlyForecasts.map(item => item.main.temp),
-                borderColor: '#3b82f6', // Bleu
+                borderColor: '#3b82f6',
                 backgroundColor: 'rgba(59, 130, 246, 0.2)',
             };
             yAxisTitle = 'Température (°C)';
@@ -143,7 +143,7 @@ function updateHourlyChart(dataType) {
             dataset = {
                 label: 'Ressenti (°C)',
                 data: hourlyForecasts.map(item => item.main.feels_like),
-                borderColor: '#f97316', // Orange
+                borderColor: '#f97316',
                 backgroundColor: 'rgba(249, 115, 22, 0.2)',
             };
             yAxisTitle = 'Température (°C)';
@@ -152,7 +152,7 @@ function updateHourlyChart(dataType) {
             dataset = {
                 label: 'Humidité (%)',
                 data: hourlyForecasts.map(item => item.main.humidity),
-                borderColor: '#10b981', // Vert
+                borderColor: '#10b981',
                 backgroundColor: 'rgba(16, 185, 129, 0.2)',
             };
             yAxisTitle = 'Humidité (%)';
@@ -161,7 +161,7 @@ function updateHourlyChart(dataType) {
             dataset = {
                 label: 'Vitesse du vent (m/s)',
                 data: hourlyForecasts.map(item => item.wind.speed),
-                borderColor: '#8b5cf6', // Violet
+                borderColor: '#8b5cf6',
                 backgroundColor: 'rgba(139, 92, 246, 0.2)',
             };
             yAxisTitle = 'Vitesse du vent (m/s)';
@@ -262,7 +262,7 @@ function loadForecastData(data) {
         hourlyContainer.innerHTML += forecastHTML;
     });
 
-    // Afficher les graphiques par défaut
+    
     updateDailyChart('temperature');
     updateHourlyChart('temperature');
 
@@ -274,6 +274,7 @@ function loadForecastData(data) {
             updateDailyChart(button.dataset.type);
         });
     });
+ 
 
     // Gérer les clics sur les boutons horaires
     document.querySelectorAll('#hourly-buttons .forecast-button').forEach(button => {
