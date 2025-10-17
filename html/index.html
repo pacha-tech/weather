@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info Locale</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="assets/js/chart.umd.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../assets/js/chart.umd.js"></script>
 </head>
 <body>
 
@@ -57,29 +57,29 @@
                         <!-- Détails secondaires -->
                         <div class=" card weather-details-secondary">
                             <div class="title-detail">
-                                <img src="assets/details.svg" alt="detail">
+                                <img src="../assets/details.svg" alt="detail">
                                 <h2>Details</h2>
                             </div>
                             <div class="detail-weather-container">
                                 <div class="detail-weather">
-                                    <img src="assets/thermometer.svg" alt="thermometer">
-                                    <p>Ressenti: <span id="feels-like" class="detail-value">...°C</span></p>
+                                    <img src="../assets/thermometer.svg" alt="thermometer">
+                                    <p>Ressenti: <strong id="feels-like" class="detail-value">...°C</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="assets/humidity.svg" alt="humidity">
-                                    <p>Humidité: <span id="humidity" class="detail-value">...%</span></p>
+                                    <img src="../assets/humidity.svg" alt="humidity">
+                                    <p>Humidité: <strong id="humidity" class="detail-value">...%</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="assets/wind.svg" alt="wind">
-                                    <p>Vent: <span id="wind-speed" class="detail-value">... m/s</span></p>
+                                    <img src="../assets/wind.svg" alt="wind">
+                                    <p>Vent: <strong id="wind-speed" class="detail-value">... m/s</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="assets/sunrise.png" alt="sunrise" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
-                                    <p>Lever du soleil: <span id="sunrise-time" class="detail-value">...</span></p>
+                                    <img src="../assets/sunrise.png" alt="sunrise" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
+                                    <p>Lever du soleil: <strong id="sunrise-time" class="detail-value">...</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="assets/sunset.png" alt="sunset" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
-                                    <p>Coucher du soleil: <span id="sunset-time" class="detail-value">...</span></p>
+                                    <img src="../assets/sunset.png" alt="sunset" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
+                                    <p>Coucher du soleil: <strong id="sunset-time" class="detail-value">...</strong></p>
                                 </div>
                             </div>
                             <!--
@@ -93,7 +93,7 @@
                     <div class="card forecast-day-card">
                         <h2 class="card-title card-title-orange">
                             <!-- Icône SVG Prévisions -->
-                            <img src="assets/calendar_color.svg" alt="calendar" />
+                            <img src="../assets/calendar_color.svg" alt="calendar" />
                             <p style="margin-left: 5px;">Prévision d'aujourd'hui</p>
                         </h2>
                         <!-- Boutons pour basculer entre les graphiques -->
@@ -110,7 +110,7 @@
                     <div class="card forecast-card">
                         <h2 class="card-title card-title-orange">
                             <!-- Icône SVG Prévisions -->
-                            <img src="assets/calendar.svg" alt="calendar" />
+                            <img src="../assets/calendar.svg" alt="calendar" />
                             <p style="margin-left: 5px;">Prévisions à 5 Jours</p>
                         </h2>
                         <div id="forecast-container" class="forecast-container">
@@ -141,9 +141,44 @@
 
                     <!-- Qualité de l'Air (Placeholder) -->
                     <div class="air-quality-section">
-                        <h3 class="section-subtitle">Qualité de l'Air (IQA)</h3>
-                        <p id="air-quality" class="air-quality-value">Chargement...</p>
-                        <p class="section-note">Source API requise</p>
+                        <p class="section-subtitle">Qualité de l'Air (IQA): <span id="air-quality" class="air-quality-value">...</span></p>
+                        <div class="container">
+                            <h4 class="titre-iqa">Indice de la Qualité de l'Air (IQA) - Échelle 1 à 5</h4>
+
+                            <table class="tableau-iqa">
+                                <thead>
+                                    <tr>
+                                        <th>Index IQA</th>
+                                        <td class="index-iqa">1</td>
+                                        <td class="index-iqa">2</td>
+                                        <td class="index-iqa">3</td>
+                                        <td class="index-iqa">4</td>
+                                        <td class="index-iqa">5</td>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Couleur</th>
+                                        <td class="couleur-iqa iqa-1"></td>
+                                        <td class="couleur-iqa iqa-2"></td>
+                                        <td class="couleur-iqa iqa-3"></td>
+                                        <td class="couleur-iqa iqa-4"></td>
+                                        <td class="couleur-iqa iqa-5"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Signification</th>
+                                        <td>Très Bon</td>
+                                        <td>Modéré</td>
+                                        <td>Mauvais (Groupes Sensibles)</td>
+                                        <td>Mauvais pour la Santé</td>
+                                        <td>Très Mauvais / Dangereux</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Trafic/Transport (Placeholder) -->
@@ -153,7 +188,9 @@
                         <p class="section-note">Source API requise</p>
                     </div>
                 </div>
+            </div>
 
+            <div class="troisieme-grid">
                 <!-- 4. Carte Actualités Locales -->
                 <div class="card news-card">
                     <h2 class="card-title card-title-purple">
@@ -171,9 +208,10 @@
         </div>
     </div>
 
-    <script src="config.js"></script>
-    <script src="geolocation.js"></script>
-    <script src="weather.js"></script>
-    <script src="forecast.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/geolocation.js"></script>
+    <script src="../js/weather.js"></script>
+    <script src="../js/forecast.js"></script>
+    <script src="../js/air.js"></script>
 </body>
 </html>

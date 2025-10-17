@@ -121,25 +121,28 @@
             border-top: 4px solid #3b82f6; /* Bleu */ 
             width: 700px;
         }
-        .environment-card { border-top: 4px solid #10b981; /* Vert émeraude */ }
+        .environment-card { 
+            border-top: 4px solid #10b981;
+            width: 500px;
+        }
         .forecast-card { 
             border-top: 4px solid #f97316;
         }
-        .news-card { border-top: 4px solid #9333ea; /* Violet */ }
+        .news-card { border-top: 4px solid #9333ea;}
 
         .card-title {
-            font-size: 24px; /* 1.5rem */
+            font-size: 24px;
             font-weight: 600;
             color: #1f2937;
-            margin-bottom: 16px; /* 1rem */
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
         }
 
         .card-icon {
-            height: 24px; /* 1.5rem */
-            width: 24px; /* 1.5rem */
-            margin-right: 8px; /* 0.5rem */
+            height: 24px;
+            width: 24px;
+            margin-right: 8px;
             stroke-width: 2;
         }
         /* Couleur des icônes pour correspondre à la bordure */
@@ -210,6 +213,7 @@
 
         .detail-value {
             font-weight: 600;
+            font-style: italic;
             color: #1f2937;
         }
 
@@ -219,27 +223,20 @@
 
         /* --- 5. Environnement et Transport --- */
         .air-quality-section {
-            margin-bottom: 24px; /* 1.5rem */
-            padding-bottom: 16px; /* 1rem */
+            margin-bottom: 24px;
+            padding-bottom: 16px;
             border-bottom: 1px solid #e5e7eb;
         }
 
         .section-subtitle {
-            font-weight: 700;
-            font-size: 18px; /* 1.125rem */
-            color: #374151;
+            color: #000000;
         }
 
-        .air-quality-value, .traffic-value {
-            font-size: 30px; /* 1.875rem */
-            font-weight: 800;
-            margin-top: 4px; /* 0.25rem */
-        }
-        .air-quality-value { color: #059669; } /* Bon en vert */
-        .traffic-value { color: #f59e0b; } /* Modéré en ambre */
+        /*.air-quality-value { color: #059669; }*/
+        .traffic-value { color: #f59e0b; }
 
         .section-note {
-            font-size: 14px; /* 0.875rem */
+            font-size: 14px;
             color: #6b7280;
         }
 
@@ -251,9 +248,8 @@
         .forecast-container {
             display: flex;
             overflow-x: auto;
-            gap: 16px; /* 1rem */
-            padding-bottom: 8px; /* 0.5rem */
-            /*scrollbar-width: none; */
+            gap: 16px;
+            padding-bottom: 8px;
         }
         .forecast-container::-webkit-scrollbar {
             display: none;
@@ -361,4 +357,76 @@
             margin-top: 20px;
             max-width: 100%;
             height: 150px;
+        }
+
+
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        /* Titre */
+        .main-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 32px;
+            color: #374151; /* Gris foncé */
+        }
+
+        
+
+        .tableau-iqa {
+            border-collapse: collapse;
+            width: 60%; 
+            margin-left: -10px; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .titre-iqa {
+            text-align: center;
+            color: #333;
+        }
+
+        .tableau-iqa th, .tableau-iqa td {
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .tableau-iqa th {
+            background-color: #f0f0f0;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .iqa-1 {
+            background-color: #00e400;
+            color: #000;
+        }
+
+    
+        .iqa-2 {
+            background-color: #ffff00;
+            color: #000;
+        }
+
+        
+        .iqa-3 {
+            background-color: #ff7e00;
+            color: #fff;
+        }
+
+
+        .iqa-4 {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        
+        .iqa-5 {
+            background-color: #8f3f97;
+            color: #fff;
         }

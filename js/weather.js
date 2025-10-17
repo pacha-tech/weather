@@ -92,4 +92,5 @@ window.onload = () => {
     setInterval(updateDateTime, 1000);
     getData();
     getForecast();
+    getAirQualityData();
 };

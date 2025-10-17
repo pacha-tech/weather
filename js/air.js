@@ -1,0 +1,39 @@
+
+function getAirColor(main) {
+    switch(main) {
+        case '1' : return 'green';
+        case '2' : return 'yellow';
+        case '3' : return 'orange';
+        case '4' : return 'red';
+        case '5' : return 'purple';
+        default: return 'black';
+    }
+}
+
+function loadAirData(data) {
+    const aqi = document.getElementById('air-quality');
+    aqi.textContent = data.list[0].main.aqi;
+    aqi.style.color = getAirColor(data.list[0].main.aqi);
+}
+
+
+function getAirQualityData(){
+    getUserLocation(async (lat, lon, error)=>{
+        if(error){
+            console.log("Erreur lors de la recuperation des donnee de l'air");
+            return;
+        }
+
+        const airQualityUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${key_api}`;
+
+        try{
+            const response = await fetch(airQualityUrl);
+            if (!response.ok) throw new Error('Erreur HTTP IQA: ' + response.status);
+            const data = await response.json();
+            loadAirData(data);
+
+        }catch(error){
+            console.log("erreur lors de la recuperation des donnees de l'air");
+        }
+    });
+}
