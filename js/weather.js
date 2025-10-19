@@ -9,18 +9,6 @@ function displayStatus(message, type = 'loading') {
     }
 }
 
-function updateDateTime() {
-    const now = new Date();
-    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    
-    const timeString = now.toLocaleTimeString('fr-FR', timeOptions);
-    document.getElementById('local-time').textContent = timeString;
-
-    const dateString = now.toLocaleDateString('fr-FR', dateOptions);
-    document.getElementById('local-date').textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-}
-
 function loadWeatherData(data , cityName) {
     document.getElementById('city-name').textContent = cityName || data.name || 'Votre Localisation';
     document.getElementById('current-temp').textContent = data.main.temp;

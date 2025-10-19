@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info Locale</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-dark-mode.css">
     <script src="../assets/js/chart.umd.js"></script>
 </head>
 <body>
@@ -22,7 +23,17 @@
                 <h1 class="title">Tableau de Bord Local</h1>
             </div>
             <div class="time-container">
-                <p id="local-time" class="time">--:--</p>
+                <div id="time-of-day-icon" class="time-of-day-icon"></div>
+                <div><p id="local-time" class="time">--:--</p></div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="dark-mode-toggle" class="checkbox-toggle" checked>
+                    
+                    <label for="dark-mode-toggle" class="toggle-label">
+                        <span class="sun-icon">🌙</span>
+                        <span class="moon-icon">☀️</span>
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -208,6 +219,7 @@
         </div>
     </div>
 
+    <script src="../js/header.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/geolocation.js"></script>
     <script src="../js/weather.js"></script>

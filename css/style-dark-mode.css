@@ -1,0 +1,87 @@
+/* --- STYLES DU MODE SOMBRE (.dark-mode) --- */
+
+/* Appliqué au BODY et aux éléments par défaut */
+.dark-mode {
+    background-color: #121212 !important; /* Noir profond */
+    color: #e0e0e0 !important; /* Texte gris clair */
+}
+
+/* Cartes (Cards) */
+.dark-mode .card {
+    background-color: #1f1f1f !important; /* Gris très foncé */
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1) !important; /* Ombre blanche subtile */
+    border: 1px solid #333 !important;
+}
+
+/* En-tête (Header) */
+.dark-mode .header-section {
+    background-color: #1f1f1f !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode .title {
+    color: #f0f0f0 !important;
+}
+
+.dark-mode .date {
+    color: #aaaaaa !important;
+}
+
+.dark-mode .time {
+    color: #6caffa !important; /* Bleu clair pour l'heure */
+}
+
+/* Titres des Cartes */
+.dark-mode .card-title {
+    color: #ffffff !important;
+}
+
+/* Sub-titres et Description Météo */
+.dark-mode .weather-description, 
+.dark-mode .weather-temp-area,
+.dark-mode .detail-weather p,
+.dark-mode .section-note,
+.dark-mode .titre-iqa {
+    color: #ffffff !important;
+}
+
+/* Détails Météo Secondaires */
+.dark-mode .weather-details-secondary {
+    background-color: #2b2b2b !important;
+    border-top: #666 solid 4px !important;
+}
+
+/* Détails dans la carte météo */
+.dark-mode .detail-value {
+    color: #ffffff !important;
+}
+
+
+/* Fond de la prévision horaire/journalière */
+.dark-mode .forecast-day,
+.dark-mode .forecast-hour {
+    background-color: #2b2b2b !important;
+    box-shadow: inset 0 2px 4px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Boutons de Prévisions */
+.dark-mode .forecast-button {
+    background-color: #2b2b2b !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #444 !important;
+}
+.dark-mode .forecast-button.active {
+    background-color: #5555ff !important; /* Un bleu plus vif pour le contraste */
+    color: #fff !important;
+    border-color: #5555ff !important;
+}
+
+/* Tableau IQA (fond des cellules) */
+.dark-mode .tableau-iqa th {
+    background-color: #2b2b2b !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #444 !important;
+}
+.dark-mode .tableau-iqa td {
+    border: 1px solid #444 !important;
+}
