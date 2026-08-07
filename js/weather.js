@@ -45,7 +45,7 @@ function getData() {
 
         try {
             const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=fr&appid=${key_weather_api}&units=metric`);
-            const response2 = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${key_weather_api}`);
+            const response2 = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${key_weather_api}`);
 
             if (!response.ok) throw new Error('Erreur HTTP: ' + response.status);
             if (!response2.ok) throw new Error('Erreur géocodage: ' + response2.status);
