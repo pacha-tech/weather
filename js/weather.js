@@ -1,13 +1,4 @@
 
-function displayStatus(message, type = 'loading') {
-    const statusEl = document.getElementById('status-message');
-    statusEl.textContent = message;
-    statusEl.className = `status-message ${type}`;
-    statusEl.style.display = 'block';
-    if (type === 'success' || type === 'error') {
-        setTimeout(() => statusEl.style.display = 'none', 5000);
-    }
-}
 
 function loadWeatherData(data , cityName) {
     document.getElementById('city-name').textContent = cityName || data.name || 'Votre Localisation';
@@ -27,6 +18,7 @@ function loadWeatherData(data , cityName) {
     else if (main === 'Clear') iconText = '☀️';
     else if (main === 'Thunderstorm') iconText = '⛈️';
     else if (main === 'Snow') iconText = '❄️';
+    else if (main === 'Mist' || main === 'Fog' || main === 'Haze') iconText = '💨';
     
     document.getElementById('weather-icon').textContent = iconText;
 
@@ -42,8 +34,6 @@ function loadWeatherData(data , cityName) {
     document.querySelectorAll('.forecast-placeholder').forEach(el => {
         el.style.display = 'none';
     });
-
-    displayStatus(`Météo chargée pour ${data.name}.`, 'success');
 }
 
 function getData() {
@@ -54,9 +44,8 @@ function getData() {
         }
 
         try {
-            displayStatus('Chargement des données météo...', 'loading');
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=fr&appid=${key_api}&units=metric`);
-            const response2 = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${key_api}`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=fr&appid=${key_weather_api}&units=metric`);
+            const response2 = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${key_weather_api}`);
 
             if (!response.ok) throw new Error('Erreur HTTP: ' + response.status);
             if (!response2.ok) throw new Error('Erreur géocodage: ' + response2.status);
@@ -64,7 +53,7 @@ function getData() {
             const data = await response.json();
             const data2 = await response2.json();
             const cityName = data2[0]?.name || null;
-            console.log(response);
+            console.log(data);
 
             loadWeatherData(data, cityName);
         } catch (error) {
@@ -81,4 +70,5 @@ window.onload = () => {
     getData();
     getForecast();
     getAirQualityData();
+    getNewsData();
 };

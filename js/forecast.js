@@ -1,8 +1,13 @@
-
 let dailyForecasts = [];
 let hourlyForecasts = [];
 let dailyChart = null;
 let hourlyChart = null;
+
+// Définition des couleurs pour le thème (Même si elles devraient être dans un fichier theme.js)
+const LIGHT_COLOR = '#4b5563'; 
+const DARK_COLOR = '#e0e0e0'; 
+const GRID_LIGHT = '#e5e7eb'; 
+const GRID_DARK = '#3b2929ff'; 
 
 function getWeatherIcon(main) {
     switch (main) {
@@ -15,10 +20,50 @@ function getWeatherIcon(main) {
     }
 }
 
+/**
+ * Met à jour les options de couleur d'un graphique Chart.js pour le mode sombre/clair.
+ * Cette fonction doit être appelée après la création du graphique.
+ */
+function setChartTheme(chartInstance) {
+    if (!chartInstance) return;
+
+    // Détecte si le body a la classe 'dark-mode'
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    const textColor = isDarkMode ? DARK_COLOR : LIGHT_COLOR;
+    const gridColor = isDarkMode ? GRID_DARK : GRID_LIGHT;
+
+    // Mise à jour des couleurs des axes et de la grille
+    if (chartInstance.options.scales.x) {
+        chartInstance.options.scales.x.grid.color = gridColor;
+        chartInstance.options.scales.x.ticks.color = textColor;
+        if (chartInstance.options.scales.x.title) {
+            chartInstance.options.scales.x.title.color = textColor;
+        }
+    }
+    
+    if (chartInstance.options.scales.y) {
+        chartInstance.options.scales.y.grid.color = gridColor;
+        chartInstance.options.scales.y.ticks.color = textColor;
+        if (chartInstance.options.scales.y.title) {
+            chartInstance.options.scales.y.title.color = textColor;
+        }
+    }
+
+    // Mise à jour de la couleur de la légende
+    if (chartInstance.options.plugins.legend) {
+        chartInstance.options.plugins.legend.labels.color = textColor;
+    }
+
+    chartInstance.update();
+}
+
 
 function updateDailyChart(dataType) {
     const ctx = document.getElementById('forecastChart')?.getContext('2d');
-
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const textColor = isDarkMode ? DARK_COLOR : LIGHT_COLOR;
+    const gridColor = isDarkMode ? GRID_DARK : GRID_LIGHT;
 
     const labels = dailyForecasts.map(day =>
         new Date(day.dt * 1000).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' })
@@ -100,28 +145,51 @@ function updateDailyChart(dataType) {
                     beginAtZero: false,
                     title: {
                         display: true,
-                        text: yAxisTitle
+                        text: yAxisTitle,
+                        color: textColor 
+                    },
+                    grid: {
+                        color: gridColor
+                    },
+                    ticks: {
+                        color: textColor
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: 'Jour'
+                        text: 'Jour',
+                        color: textColor
+                    },
+                    grid: {
+                        color: gridColor
+                    },
+                    ticks: {
+                        color: textColor
                     }
                 }
             },
             plugins: {
                 legend: {
-                    display: true
+                    display: true,
+                    labels: {
+                        color: textColor
+                    }
                 }
             }
         }
     });
+
+    // Appliquer le thème après la création/mise à jour
+    setChartTheme(dailyChart);
 }
 
 
 function updateHourlyChart(dataType) {
     const ctx = document.getElementById('forecast-day-Chart')?.getContext('2d');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const textColor = isDarkMode ? DARK_COLOR : LIGHT_COLOR;
+    const gridColor = isDarkMode ? GRID_DARK : GRID_LIGHT;
 
     const labels = hourlyForecasts.map(item =>
         new Date(item.dt * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
@@ -187,23 +255,43 @@ function updateHourlyChart(dataType) {
                     beginAtZero: false,
                     title: {
                         display: true,
-                        text: yAxisTitle
+                        text: yAxisTitle,
+                        color: textColor
+                    },
+                    grid: {
+                        color: gridColor
+                    },
+                    ticks: {
+                        color: textColor
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: 'Heure'
+                        text: 'Heure',
+                        color: textColor
+                    },
+                    grid: {
+                        color: gridColor
+                    },
+                    ticks: {
+                        color: textColor
                     }
                 }
             },
             plugins: {
                 legend: {
-                    display: true
+                    display: true,
+                    labels: {
+                        color: textColor
+                    }
                 }
             }
         }
     });
+
+    // Appliquer le thème après la création/mise à jour
+    setChartTheme(hourlyChart);
 }
 
 function loadForecastData(data) {
@@ -213,6 +301,10 @@ function loadForecastData(data) {
     dailyContainer.innerHTML = '';
     hourlyContainer.innerHTML = '';
 
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const textColor = isDarkMode ? DARK_COLOR : LIGHT_COLOR;
+    //const gridColor = isDarkMode ? GRID_DARK : GRID_LIGHT;
+
     // Prévisions quotidiennes (midi sur 5 jours)
     dailyForecasts = data.list.filter(item => item.dt_txt.includes('12:00:00')).slice(0, 5);
 
@@ -220,8 +312,6 @@ function loadForecastData(data) {
         const date = new Date(day.dt * 1000).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' });
         const tempMin = day.main.temp_min.toFixed(1);
         const tempMax = day.main.temp_max.toFixed(1);
-        //const humidity = day.main.humidity;
-        //const windSpeed = day.wind.speed.toFixed(1);
         const icon = getWeatherIcon(day.weather[0].main);
         const description = day.weather[0].description.charAt(0).toUpperCase() + day.weather[0].description.slice(1);
 
@@ -233,6 +323,7 @@ function loadForecastData(data) {
                 <p class="forecast-temp">${description}</p> 
             </div>
         `;
+
         dailyContainer.innerHTML += forecastHTML;
     });
 
@@ -240,14 +331,11 @@ function loadForecastData(data) {
     const today = new Date().toISOString().split('T')[0];
     hourlyForecasts = data.list
         .filter(item => item.dt_txt.startsWith(today))
-        .slice(0, 8); // Limiter à 8 points (00:00 à 21:00)
+        .slice(0, 8);
 
     hourlyForecasts.forEach(item => {
         const time = new Date(item.dt * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
         const temp = item.main.temp.toFixed(1);
-        //const feelsLike = item.main.feels_like.toFixed(1);
-        //const humidity = item.main.humidity;
-        //const windSpeed = item.wind.speed.toFixed(1);
         const icon = getWeatherIcon(item.weather[0].main);
         const description = item.weather[0].description.charAt(0).toUpperCase() + item.weather[0].description.slice(1);
 
@@ -266,12 +354,19 @@ function loadForecastData(data) {
     updateDailyChart('temperature');
     updateHourlyChart('temperature');
 
+    // Appeler la fonction de thème sur les graphiques après leur création initiale
+    setChartTheme(dailyChart);
+    setChartTheme(hourlyChart);
+
+
     // Gérer les clics sur les boutons quotidiens
     document.querySelectorAll('#daily-buttons .forecast-button').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('#daily-buttons .forecast-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             updateDailyChart(button.dataset.type);
+            // Appliquer le thème après la mise à jour des données
+            setChartTheme(dailyChart);
         });
     });
  
@@ -282,28 +377,19 @@ function loadForecastData(data) {
             document.querySelectorAll('#hourly-buttons .forecast-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             updateHourlyChart(button.dataset.type);
+            // Appliquer le thème après la mise à jour des données
+            setChartTheme(hourlyChart);
         });
     });
 
-    // Afficher le message de succès
-    document.getElementById('status-message').textContent = `Prévisions météo chargées pour ${data.city.name || 'votre localisation'}.`;
-    document.getElementById('status-message').className = 'status-message success';
-    setTimeout(() => document.getElementById('status-message').style.display = 'none', 5000);
 }
 
 function getForecast() {
     getUserLocation(async (lat, lon, error) => {
-        if (error) { 
-            document.getElementById('status-message').textContent = error;
-            document.getElementById('status-message').className = 'status-message error';
-            return;
-        }
 
         try {
-            document.getElementById('status-message').textContent = 'Chargement des prévisions météo...';
-            document.getElementById('status-message').className = 'status-message loading';
             const response = await fetch(
-                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=fr&appid=${key_api}&units=metric`
+                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=fr&appid=${key_weather_api}&units=metric`
             );
             if (!response.ok) throw new Error('Erreur HTTP: ' + response.status);
             const data = await response.json();
@@ -311,8 +397,6 @@ function getForecast() {
             console.log(data);
         } catch (error) {
             console.error('Erreur de récupération des prévisions météo:', error);
-            document.getElementById('status-message').textContent = 'Erreur lors du chargement des prévisions météo';
-            document.getElementById('status-message').className = 'status-message error';
         }
     });
 }

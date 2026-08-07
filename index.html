@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info Locale</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-dark-mode.css">
-    <script src="../assets/js/chart.umd.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-dark-mode.css">
+    <script src="assets/js/chart.umd.js"></script>
 </head>
 <body>
 
     <div id="app-container" class="app-container">
-        <!-- Message de chargement/erreur au-dessus du tableau de bord -->
-        <div id="status-message" class="status-message loading">Chargement de votre position...</div>
+
         
-        <!-- En-tête et Horloge -->
         <div class="header-section">
             <div class="date-container">
                 <p id="local-date" class="date">...</p>
@@ -37,77 +35,70 @@
             </div>
         </div>
 
-        <!-- Grille Principale : Météo, Air, etc. -->
         <div class="main-grid">
             <div class="first-grid">
-                <!-- 1. Carte Météo Principale -->
                 <div id="weather-card" class="card weather-card-main">
                     <div class="meteo-title">
-                        <h2 class="card-title card-title-blue">
-                            <!-- Icône SVG Météo -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                            Météo Actuelle (<span id="city-name">...</span>)
-                        </h2>
-                    </div>
-                    
-                    <div class="weather-content-wrapper">
-                        
-                        <div class="weather-temp-area">
-                            <!-- Température et icône -->
+                        <div class="meteo-lieu">
+                            <div class="card-title card-title-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Météo Actuelle (<span id="city-name">...</span>)</p>
+                            </div>
+                        </div>
+                        <div class="meteo-value">
                             <div class="weather-temp-display">
                                 <span id="weather-icon" class="weather-icon">...</span>
                                 <div class="weather-temp">
-                                    <span id="current-temp">--</span>°C
+                                    <span id="current-temp">--</span>°
                                 </div>
                             </div>
-                            <p id="weather-description" class="weather-description">Chargement des données...</p>
+                            <div class="weather-temp-area">
+                                <p id="weather-description" class="weather-description">Chargement des données...</p>
+                            </div>
                         </div>
+                    </div>
+                    
+                    <div class="weather-content-wrapper">
 
-                        <!-- Détails secondaires -->
                         <div class=" card weather-details-secondary">
                             <div class="title-detail">
-                                <img src="../assets/details.svg" alt="detail">
+                                <img src="assets/details.svg" alt="detail">
                                 <h2>Details</h2>
                             </div>
                             <div class="detail-weather-container">
                                 <div class="detail-weather">
-                                    <img src="../assets/thermometer.svg" alt="thermometer">
+                                    <img src="assets/thermometer.svg" alt="thermometer">
                                     <p>Ressenti: <strong id="feels-like" class="detail-value">...°C</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="../assets/humidity.svg" alt="humidity">
+                                    <img src="assets/humidity.svg" alt="humidity">
                                     <p>Humidité: <strong id="humidity" class="detail-value">...%</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="../assets/wind.svg" alt="wind">
+                                    <img src="assets/wind.svg" alt="wind">
                                     <p>Vent: <strong id="wind-speed" class="detail-value">... m/s</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="../assets/sunrise.png" alt="sunrise" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
+                                    <img src="assets/sunrise.png" alt="sunrise" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
                                     <p>Lever du soleil: <strong id="sunrise-time" class="detail-value">...</strong></p>
                                 </div>
                                 <div class="detail-weather">
-                                    <img src="../assets/sunset.png" alt="sunset" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
+                                    <img src="assets/sunset.png" alt="sunset" width="24px" height="24px" style="margin-top: 2px; margin-right: 2px;">
                                     <p>Coucher du soleil: <strong id="sunset-time" class="detail-value">...</strong></p>
                                 </div>
                             </div>
-                            <!--
-                            <p>Longitude: <span id="longitude" class="detail-value">...</span></p>
-                            <p>Lattitude: <span id="lattitude" class="detail-value">...</span></p>
-                            -->
                         </div>
                     </div>
 
-                    <!-- Prevision de la journee -->
                     <div class="card forecast-day-card">
                         <h2 class="card-title card-title-orange">
-                            <!-- Icône SVG Prévisions -->
                             <img src="../assets/calendar_color.svg" alt="calendar" />
                             <p style="margin-left: 5px;">Prévision d'aujourd'hui</p>
                         </h2>
-                        <!-- Boutons pour basculer entre les graphiques -->
                          <div id="forecast-hourly-container" class="forecast-container"></div>
                         <div class="forecast-buttons" id="hourly-buttons">
                             <button class="forecast-button active" data-type="temperature">Température</button>
@@ -117,15 +108,12 @@
                         </div>
                         <canvas id="forecast-day-Chart"></canvas>
                     </div>
-                    <!-- 3. Panneau des Prévisions à 5 Jours -->
                     <div class="card forecast-card">
                         <h2 class="card-title card-title-orange">
-                            <!-- Icône SVG Prévisions -->
                             <img src="../assets/calendar.svg" alt="calendar" />
                             <p style="margin-left: 5px;">Prévisions à 5 Jours</p>
                         </h2>
                         <div id="forecast-container" class="forecast-container">
-                            <!-- Les prévisions seront injectées ici par le JS -->
                         </div>
                         <div class="forecast-buttons" id="daily-buttons">
                             <button class="forecast-button active" data-type="temperature">Température</button>
@@ -140,21 +128,18 @@
 
             
             <div class="second-grid">
-                <!-- 2. Carte Qualité de l'Air et Transport -->
                 <div class="card environment-card">
                     <h2 class="card-title card-title-green">
-                        <!-- Icône SVG Environnement -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-9-8v4m18-4v4m-3-4v4" />
                         </svg>
-                        Environnement & Transport
+                        Environnement
                     </h2>
 
-                    <!-- Qualité de l'Air (Placeholder) -->
                     <div class="air-quality-section">
-                        <p class="section-subtitle">Qualité de l'Air (IQA): <span id="air-quality" class="air-quality-value">...</span></p>
+                        <p class="section-subtitle">Qualité de l'Air (IQA): <span id="air-quality" class="air-quality-value" >...</span></p>
                         <div class="container">
-                            <h4 class="titre-iqa">Indice de la Qualité de l'Air (IQA) - Échelle 1 à 5</h4>
+                            <h5 class="titre-iqa">Indice de la Qualité de l'Air (IQA) - Échelle 1 à 5</h5>
 
                             <table class="tableau-iqa">
                                 <thead>
@@ -191,21 +176,12 @@
                             </table>
                         </div>
                     </div>
-
-                    <!-- Trafic/Transport (Placeholder) -->
-                    <div>
-                        <h3 class="section-subtitle">Trafic Routier</h3>
-                        <p id="traffic-status" class="traffic-value">Inconnu</p>
-                        <p class="section-note">Source API requise</p>
-                    </div>
                 </div>
             </div>
 
             <div class="troisieme-grid">
-                <!-- 4. Carte Actualités Locales -->
                 <div class="card news-card">
                     <h2 class="card-title card-title-purple">
-                        <!-- Icône SVG Actualités -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13h2a2 2 0 002-2V7a2 2 0 00-2-2h-3m-6 10L9 7m3 0l3 3m-3-3l3 3" />
                         </svg>
@@ -219,11 +195,12 @@
         </div>
     </div>
 
-    <script src="../js/header.js"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/geolocation.js"></script>
-    <script src="../js/weather.js"></script>
-    <script src="../js/forecast.js"></script>
-    <script src="../js/air.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/geolocation.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/forecast.js"></script>
+    <script src="js/air.js"></script>
+    <script src="js/news.js"></script>
 </body>
 </html>

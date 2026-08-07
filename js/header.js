@@ -13,10 +13,10 @@ function updateDateTime() {
     
     let timeIconHTML = '';
     
-    if (hour >= 0 && hour <= 6) { 
+    if (hour >= 0 && hour < 6) { 
         timeIconHTML = '<span class="time-icon">🌑</span>';
     
-    } else if (hour > 6 && hour <= 8) {
+    } else if (hour >= 6 && hour <= 8) {
         timeIconHTML = '<span class="time-icon">🌅</span>';
         
     } else if (hour > 8 && hour <= 12) {
@@ -38,29 +38,29 @@ function updateDateTime() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Nouvelle référence à la case à cocher
+
     const toggleInput = document.getElementById('dark-mode-toggle');
     const body = document.body;
     
-    // --- 1. Charger la préférence enregistrée ---
+
     const savedTheme = localStorage.getItem('theme');
     
-    // Appliquer le thème sauvegardé
+
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
-        toggleInput.checked = true; // Coche la case à cocher
+        toggleInput.checked = true;
     } else {
         body.classList.remove('dark-mode');
-        toggleInput.checked = false; // Décoche la case à cocher
+        toggleInput.checked = false;
     }
 
-    // --- 2. Gérer l'événement de changement (click ou keypress) ---
+
     if (toggleInput) {
         toggleInput.addEventListener('change', () => {
-            // Basculer la classe sur le body
+
             body.classList.toggle('dark-mode', toggleInput.checked);
             
-            // Sauvegarder la nouvelle préférence
+        
             if (toggleInput.checked) {
                 localStorage.setItem('theme', 'dark');
             } else {

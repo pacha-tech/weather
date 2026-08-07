@@ -4,7 +4,7 @@ function getUserLocation(callback) {
       (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        callback(lat, lon); // Appeler le callback avec les coordonnées
+        callback(lat, lon);
       },
       (error) => {
         console.error('Erreur de géolocalisation:', error.message);

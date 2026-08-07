@@ -1,87 +1,106 @@
-/* --- STYLES DU MODE SOMBRE (.dark-mode) --- */
-
-/* Appliqué au BODY et aux éléments par défaut */
 .dark-mode {
-    background-color: #121212 !important; /* Noir profond */
-    color: #e0e0e0 !important; /* Texte gris clair */
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
-/* Cartes (Cards) */
 .dark-mode .card {
-    background-color: #1f1f1f !important; /* Gris très foncé */
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1) !important; /* Ombre blanche subtile */
-    border: 1px solid #333 !important;
+    background-color: #1f1f1f1f;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
 }
 
-/* En-tête (Header) */
 .dark-mode .header-section {
-    background-color: #1f1f1f !important;
+    background-color: #1f1f1f;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
 }
 
 .dark-mode .title {
-    color: #f0f0f0 !important;
+    color: #f0f0f0;
 }
 
 .dark-mode .date {
-    color: #aaaaaa !important;
+    color: #aaaaaa;
 }
 
 .dark-mode .time {
-    color: #6caffa !important; /* Bleu clair pour l'heure */
+    color: #6caffa;
 }
-
-/* Titres des Cartes */
+ 
 .dark-mode .card-title {
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
-/* Sub-titres et Description Météo */
+.dark-mode .weather-card-main { 
+    border-top: 4px solid #3b82f6; 
+}
+
+.dark-mode .forecast-day-card {
+    border-top: rgb(0, 247, 255) 4px solid;
+}
+
+.dark-mode .forecast-card { 
+    border-top: 4px solid #f97316;
+}
+
+.dark-mode .environment-card { 
+    border-top: 4px solid #10b981;
+}
+
+.dark-mode .news-card { 
+    border-top: 4px solid #9333ea;
+}
+
 .dark-mode .weather-description, 
 .dark-mode .weather-temp-area,
 .dark-mode .detail-weather p,
 .dark-mode .section-note,
+.dark-mode .weather-temp,
 .dark-mode .titre-iqa {
-    color: #ffffff !important;
+    color: #ffffff ;
 }
 
-/* Détails Météo Secondaires */
 .dark-mode .weather-details-secondary {
-    background-color: #2b2b2b !important;
-    border-top: #666 solid 4px !important;
+    background-color: #2b2b2b;
+    border-top: #ffffff solid 4px;
 }
 
-/* Détails dans la carte météo */
 .dark-mode .detail-value {
-    color: #ffffff !important;
+    color: #ffffff ;
 }
 
-
-/* Fond de la prévision horaire/journalière */
 .dark-mode .forecast-day,
 .dark-mode .forecast-hour {
-    background-color: #2b2b2b !important;
-    box-shadow: inset 0 2px 4px 0 rgba(255, 255, 255, 0.1) !important;
+    background-color: #2b2b2b;
+    box-shadow: inset 0 2px 4px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Boutons de Prévisions */
+.dark-mode .forecast-day-name {
+    color: #ffffff;
+}
 .dark-mode .forecast-button {
-    background-color: #2b2b2b !important;
-    color: #e0e0e0 !important;
-    border: 1px solid #444 !important;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    border: 1px solid #444;
 }
 .dark-mode .forecast-button.active {
-    background-color: #5555ff !important; /* Un bleu plus vif pour le contraste */
-    color: #fff !important;
-    border-color: #5555ff !important;
+    background-color: #5555ff;
+    color: #fff;
+    border-color: #5555ff;
 }
 
-/* Tableau IQA (fond des cellules) */
 .dark-mode .tableau-iqa th {
-    background-color: #2b2b2b !important;
-    color: #e0e0e0 !important;
-    border: 1px solid #444 !important;
+    background-color: #2b2b2b ;
+    color: #e0e0e0;
+    border: 1px solid #444;
 }
 .dark-mode .tableau-iqa td {
-    border: 1px solid #444 !important;
+    border: 1px solid #444;
+}
+
+.dark-mode .section-subtitle {
+    color: #fff;
+}
+
+.dark-mode #air-quality {
+    color: #fff;
 }

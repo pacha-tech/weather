@@ -1,19 +1,8 @@
 
-function getAirColor(main) {
-    switch(main) {
-        case '1' : return 'green';
-        case '2' : return 'yellow';
-        case '3' : return 'orange';
-        case '4' : return 'red';
-        case '5' : return 'purple';
-        default: return 'black';
-    }
-}
 
 function loadAirData(data) {
     const aqi = document.getElementById('air-quality');
     aqi.textContent = data.list[0].main.aqi;
-    aqi.style.color = getAirColor(data.list[0].main.aqi);
 }
 
 
@@ -24,7 +13,7 @@ function getAirQualityData(){
             return;
         }
 
-        const airQualityUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${key_api}`;
+        const airQualityUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${key_weather_api}`;
 
         try{
             const response = await fetch(airQualityUrl);
